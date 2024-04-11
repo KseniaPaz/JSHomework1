@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         //1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
@@ -25,13 +27,36 @@
         console.log(counter1.increment());
         console.log(counter1.increment());
         console.log(counter1.increment());
+        console.log(counter1.increment());
 
         const counter2 = createCounter();
         console.log(counter2.decrement());
         console.log(counter2.decrement());
-        console.log(counter2.decrement());
 
-        
+        //3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве.
+
+        let searchElement = [];
+        function findElementByClass(rootElem, classElem) {
+            if (rootElem.hasChildNodes()) {
+                for (let e of rootElem.children) {
+                    if (e.className === classElem) {
+                        searchElement.push(e);
+                        if (searchElement[0].className !== classElem) {
+                            searchElement = [];
+                            searchElement.push(e);
+                        }
+                    }
+                    findElementByClass(e, classElem)
+                }
+                return searchElement[0];
+            }
+            return findElementByClass(root - 1) * root;
+        }
+
+        const rootElement = document.getElementById('root');
+        const targetElement = findElementByClass(rootElement, 'my-class');
+        console.log(targetElement);
+
 
     </script>
 </body>
